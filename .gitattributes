@@ -1,9 +1,15 @@
-*.blend filter=lfs diff=lfs merge=lfs -text
+# Extensions
+# Images
 *.png filter=lfs diff=lfs merge=lfs -text
 *.bmp filter=lfs diff=lfs merge=lfs -text
 *.psd filter=lfs diff=lfs merge=lfs -text
+# Audio
 *.wav filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+# Other
+*.blend filter=lfs diff=lfs merge=lfs -text
+
+# Particular file
 Debug.exe filter=lfs diff=lfs merge=lfs -text
 player_win_x86.pdb filter=lfs diff=lfs merge=lfs -text
 player_win_x86_s.pdb filter=lfs diff=lfs merge=lfs -text
