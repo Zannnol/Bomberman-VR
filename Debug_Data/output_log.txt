@@ -1,0 +1,50 @@
+Initialize engine version: 5.3.4f1 (fdbb5133b820)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 8600/8700M (ID=0x6600)
+    Vendor:   ATI
+    VRAM:     2030 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.054 seconds
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\Git\Bomberman-VR\Debug_Data\Managed\System.dll (this message is harmless)
+desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+<RI> Initialized touch support.
+UnloadTime: 0.686732 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2ea4 -> priority: 1 
+  Thread -> id: 2c90 -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.095911 ms
+
+Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 1683.
+Total: 0.778172 ms (FindLiveObjects: 0.076510 ms CreateObjectMapping: 0.039655 ms MarkObjects: 0.647077 ms  DeleteObjects: 0.014462 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.670692 ms
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 475.
+Total: 1.910908 ms (FindLiveObjects: 0.061115 ms CreateObjectMapping: 0.062515 ms MarkObjects: 1.720097 ms  DeleteObjects: 0.066713 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.595292 ms
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1683.
+Total: 0.893405 ms (FindLiveObjects: 0.063914 ms CreateObjectMapping: 0.042454 ms MarkObjects: 0.772574 ms  DeleteObjects: 0.014462 ms)
+
