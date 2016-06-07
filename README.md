@@ -1,8 +1,8 @@
 # Bomberman-VR
 
 ##Informations pratiques
-- Nous utilisons l'extension '*Git Large File Storage*' pour le stockage de gros fichiers sur GitHub.
-- Les projets Unity laissent souvent trainer des fichiers inutiles même après une suppression rapide, pour avoir quelque chose de propre nous utilisons un script Powershell de l'utilisateur GitHub '*Strich*' nommée '*post-merge*'.
+- Nous utilisons l'extension '**Git Large File Storage**' pour le stockage de gros fichiers sur GitHub.
+- Les projets Unity laissent souvent trainer des fichiers inutiles même après une suppression rapide, pour avoir quelque chose de propre nous utilisons un script Powershell de l'utilisateur GitHub '**Strich**' nommée '*post-merge*'.
 
 ##Configuration correcte du Repo GitHub
 1. Cloner la branche Master
@@ -16,4 +16,4 @@ Il contient toutes les infos concernant le stockage de gros fichiers.
 Son architecture est très simple,
 - En haut se trouvent tous les fichiers par rapport à leur extension.
 - En bas se trouvent les fichiers seuls (nom complet + extension).
-Il est possible d'ajouter le contenu d'un dossier en particulier, il suffit de mettre à la place du nom du fichier le chemin d'accès p.ex.: '*assets/prefabs/**'.
+- Il est aussi possible d'ajouter le contenu d'un dossier en particulier, il suffit de mettre à la place du nom du fichier le chemin d'accès p.ex.: "assets/prefabs/*".
