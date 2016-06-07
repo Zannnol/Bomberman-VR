@@ -9,3 +9,4 @@
 2. Télécharger le [Git-Dir-Cleaner-for-Unity3D] (https://github.com/strich/git-dir-cleaner-for-unity3d), puis placer le fichier '*post-merge*' dans ".git/hooks/"
 3. Installer [Git Large File Storage] (https://git-lfs.github.com/)
 4. Ouvrir un '*Shell Git*', se placer dans le dossier cloné, exécuter la commande `git lfs install`
+5. Tout est bon !
