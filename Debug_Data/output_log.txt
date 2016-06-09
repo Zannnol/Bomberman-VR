@@ -1,28 +1,25 @@
-Initialize engine version: 5.3.4f1 (fdbb5133b820)
+Initialize engine version: 5.3.5f1 (960ebf59018a)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: AMD Radeon HD 8600/8700M (ID=0x6600)
+    Renderer: AMD Radeon HD 8750M (ID=0x6600)
     Vendor:   ATI
-    VRAM:     2030 MB
+    VRAM:     2027 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.134 seconds
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\System.dll (this message is harmless)
-desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.126 seconds
+Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3520x1080 at -1600,0
 <RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI.Hid> Failed to create device file:
  2 Le fichier spécifié est introuvable.
 
