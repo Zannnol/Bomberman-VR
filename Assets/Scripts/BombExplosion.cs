@@ -15,7 +15,6 @@ public class BombExplosion : NetworkBehaviour {
 	public AudioClip exploSound;
 	public float exploTimer = 3.0f;
 	public float exploDispa = 0.3f;
-	public bool exploPause = false;
 
 	// Bombs pushing
 	private Vector3 oldPos = Vector3.zero;
@@ -40,8 +39,21 @@ public class BombExplosion : NetworkBehaviour {
 		
 	void Update () {
 
-		if(!exploPause)
+		ParticleSystem sparks = myTransform.FindChild ("Sparks").GetComponent<ParticleSystem> ();
+
+		if (settings.timeStopped) {
+			
+			sparks.Pause ();
+
+		} else {
+			
 			exploTimer -= Time.deltaTime;
+
+			if (sparks.isPaused) {
+			
+				sparks.Play ();
+			}
+		}
 
 		// Check if the timer is over
 		if (exploTimer <= 0) {
@@ -80,7 +92,7 @@ public class BombExplosion : NetworkBehaviour {
 		}
 
 		// Check if the bomb is pushed
-		if (pushing) {
+		if (pushing && !settings.timeStopped) {
 
 			// Make the animation of the push
 			myTransform.position = Vector3.MoveTowards (myTransform.position, nextPos, Time.deltaTime * 10.0f);
