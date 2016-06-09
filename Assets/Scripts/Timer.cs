@@ -17,7 +17,7 @@ public class Timer : MonoBehaviour {
 
 		SetTimer ();
 
-		if (settings.gamePaused)
+		if (settings.gamePaused || settings.timeStopped)
 			return;
 
 		// Check if the timer is over

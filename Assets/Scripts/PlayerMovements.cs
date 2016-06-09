@@ -2,6 +2,7 @@
 using WiimoteApi;
 using System;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.Networking;
 using System.Collections;
 
@@ -11,6 +12,8 @@ public class PlayerMovements : NetworkBehaviour {
 	[SyncVar] public int bombPower = 1;
 	[SyncVar] public float speed = 7.0f;
 	[SyncVar] public bool bombPush = false;
+	public bool zaWarodu = true;
+	public AudioClip zaWaroduSound;
 
 	private Transform myTransform;
 	private CharacterController controller;
@@ -155,8 +158,19 @@ public class PlayerMovements : NetworkBehaviour {
 	}
 
 	void Update() {
+
+		Animator playerAnimator = GetComponent<Animator> ();
+
+		if (settings.timeStopped) {
+			
+			playerAnimator.speed = 0;
+
+		} else if (playerAnimator.speed == 0) {
 		
-		if (!isLocalPlayer || settings.gamePaused)
+			playerAnimator.speed = 1.0f;
+		}
+		
+		if (!isLocalPlayer || settings.gamePaused || settings.timeStopped)
 			return;
 
 		Collider[] maps = Physics.OverlapSphere (myTransform.position, 3.0f);
@@ -169,9 +183,16 @@ public class PlayerMovements : NetworkBehaviour {
 
 		Move ();
 		Look ();
-        if(Input.GetAxis("Fire1") == 1 && !onBomb && bombNum > 0) {
-            Bomb();
-        }
+
+		if (Input.GetAxis ("Fire1") == 1 && !onBomb && bombNum > 0) {
+			
+			Bomb ();
+
+		} else if (Input.GetAxis ("Fire2") == 1 && zaWarodu) {
+		
+			StartCoroutine (ZaWarodu ());
+			zaWarodu = false;
+		}
 		/*
         if(isWiimote) {
             UseWiimote();
@@ -189,23 +210,7 @@ public class PlayerMovements : NetworkBehaviour {
 		float h = Input.GetAxis ("Horizontal") * Time.deltaTime * speed;
 		float v = Input.GetAxis ("Vertical") * Time.deltaTime * speed;
 
-		if (h != 0) {
-
-			GetComponent<Animator> ().SetBool ("Walking", true);
-			GetComponent<Animator> ().SetFloat ("Speed", speed / 8.0f * h * 10.0f);
-		}
-
-		if(v != 0) {
-
-			GetComponent<Animator> ().SetBool ("Walking", true);
-			GetComponent<Animator> ().SetFloat ("Speed", speed / 8.0f * v * 10.0f);
-		}
-
-		if(h == 0 && v == 0) {
-
-			GetComponent<Animator> ().SetBool ("Walking", false);
-			GetComponent<Animator> ().SetFloat ("Speed", 1.0f);
-		}
+		WalkAnim (ref h, v);
 			
 		controller.Move (myTransform.TransformDirection(new Vector3(-h, 0, -v)));
 	}
@@ -232,10 +237,31 @@ public class PlayerMovements : NetworkBehaviour {
 			Vector3 pos = settings.RoundPosition (myTransform.position);
 
 			bombNum--;
-				
+
 			CmdSpawnBomb (pos.x, pos.z);
 
 			onBomb = true;
+	}
+
+	void WalkAnim(ref float h, float v) {
+
+		if (h != 0) {
+
+			GetComponent<Animator> ().SetBool ("Walking", true);
+			GetComponent<Animator> ().SetFloat ("Speed", speed / 8.0f * h * 10.0f);
+		}
+
+		if(v != 0) {
+
+			GetComponent<Animator> ().SetBool ("Walking", true);
+			GetComponent<Animator> ().SetFloat ("Speed", speed / 8.0f * v * 10.0f);
+		}
+
+		if(h == 0 && v == 0) {
+
+			GetComponent<Animator> ().SetBool ("Walking", false);
+			GetComponent<Animator> ().SetFloat ("Speed", 1.0f);
+		}
 	}
 
    /// <summary>
@@ -311,8 +337,9 @@ public class PlayerMovements : NetworkBehaviour {
 
 		} else if (collider.CompareTag ("Explosion")) {
 
-			GameObject.Find ("Minimap Camera").GetComponent<Camera> ().rect = new Rect(Vector2.zero, new Vector2(1.0f, 1.0f));
+			GameObject.Find ("Minimap Camera").GetComponent<Camera> ().rect = new Rect (Vector2.zero, new Vector2 (1.0f, 1.0f));
 			Destroy (gameObject);
+
 		}
 	}
 		
@@ -358,5 +385,15 @@ public class PlayerMovements : NetworkBehaviour {
 		
 			col.layer = 0;
 		}
+	}
+
+	IEnumerator ZaWarodu() {
+	
+		GetComponent<AudioSource> ().volume = 0.5f;
+		GetComponent<AudioSource> ().PlayOneShot (zaWaroduSound);
+
+		yield return new WaitForSeconds (1.8f);
+
+		Instantiate (settings.zaWaroduPrefab, myTransform.position, Quaternion.identity);
 	}
 }

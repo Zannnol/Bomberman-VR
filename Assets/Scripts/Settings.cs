@@ -8,11 +8,13 @@ public class Settings : MonoBehaviour {
 
 	[Header("Prefabs")]
 	public GameObject bombPrefab;
+	public GameObject zaWaroduPrefab;
 	public GameObject exploPrefab;
 	public GameObject[] bonusPrefabs;
 
 	[Header("Game")]
 	public bool gamePaused = true;
+	public bool timeStopped = false;
 	public bool nightMode = false;
 	public float gameTimer = 180.0f;
 
