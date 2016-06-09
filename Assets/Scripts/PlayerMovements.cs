@@ -66,7 +66,7 @@ public class PlayerMovements : NetworkBehaviour {
 
 		var explo = Instantiate (settings.exploPrefab);
 		explo.transform.parent = parent.transform;
-		explo.transform.position = new Vector3(x, 1f, z);
+		explo.transform.position = new Vector3(x, 1.0f, z);
 		explo.name = "Explosion";
 
 		NetworkServer.Spawn (explo);
@@ -136,26 +136,22 @@ public class PlayerMovements : NetworkBehaviour {
 		settings.playerHUD[1].transform.eulerAngles = new Vector3 (90.0f, transform.eulerAngles.y, 0);
 
 		// Create the camera
+		/*
 		var cam = new GameObject ();
 		cam.AddComponent<Camera> ();
 		cam.AddComponent<FlareLayer> ();
 		cam.AddComponent<AudioListener> ();
-		cam.transform.position = myTransform.position + new Vector3 (0, 0.6f, -0.1f);
+		cam.transform.position = myTransform.position + new Vector3 (0, 2.0f, -0.1f);
 		cam.transform.rotation = myTransform.rotation;
 		cam.transform.parent = myTransform;
-		cam.name = "Head";
-
-		// Set the lamp position and the parent
-		Transform lamp = myTransform.FindChild ("Lamp");
-		lamp.GetComponent<Transform> ().position += new Vector3(0, 0.6f, 0);
-		lamp.transform.parent = cam.transform;
+		cam.name = "Head";*/
 
 		// Check if the night mode is activated
 		if (settings.nightMode)
-			lamp.gameObject.SetActive (true);
+			myTransform.FindChild("Lamp").gameObject.SetActive (true);
 
-        //Initialise Wiimotes
-        InitWiimotes();
+		//Initialise Wiimotes
+		//InitWiimotes();
 	}
 
 	void Update() {
@@ -176,12 +172,13 @@ public class PlayerMovements : NetworkBehaviour {
         if(Input.GetAxis("Fire1") == 1 && !onBomb && bombNum > 0) {
             Bomb();
         }
+		/*
         if(isWiimote) {
             UseWiimote();
             if (wiimote.Accel.accel[0] > 650 && !onBomb && bombNum > 0) {
                 Bomb();
             }
-        }
+        }*/
 	}
 
 	/// <summary>
@@ -192,7 +189,25 @@ public class PlayerMovements : NetworkBehaviour {
 		float h = Input.GetAxis ("Horizontal") * Time.deltaTime * speed;
 		float v = Input.GetAxis ("Vertical") * Time.deltaTime * speed;
 
-		controller.Move (myTransform.TransformDirection(new Vector3(h, 0, v)));
+		if (h != 0) {
+
+			GetComponent<Animator> ().SetBool ("Walking", true);
+			GetComponent<Animator> ().SetFloat ("Speed", speed / 8.0f * h * 10.0f);
+		}
+
+		if(v != 0) {
+
+			GetComponent<Animator> ().SetBool ("Walking", true);
+			GetComponent<Animator> ().SetFloat ("Speed", speed / 8.0f * v * 10.0f);
+		}
+
+		if(h == 0 && v == 0) {
+
+			GetComponent<Animator> ().SetBool ("Walking", false);
+			GetComponent<Animator> ().SetFloat ("Speed", 1.0f);
+		}
+			
+		controller.Move (myTransform.TransformDirection(new Vector3(-h, 0, -v)));
 	}
 
 	/// <summary>
@@ -205,7 +220,7 @@ public class PlayerMovements : NetworkBehaviour {
 
 		myTransform.Rotate (new Vector3 (0, h, 0));
 
-		GameObject.Find ("Head").GetComponent<Camera> ().GetComponent<Transform> ().Rotate (new Vector3 (v, 0, 0));
+		myTransform.FindChild("Head").GetComponent<Camera> ().GetComponent<Transform> ().Rotate (new Vector3 (v, 0, 0));
 	}
 		
 	/// <summary>
