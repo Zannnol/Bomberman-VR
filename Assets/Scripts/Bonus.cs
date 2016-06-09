@@ -20,7 +20,8 @@ public class Bonus : NetworkBehaviour {
 
 	void Update () {
 
-		myTransform.RotateAround(transform.position, Vector3.up, 40.0f * Time.deltaTime);
+		if(!settings.timeStopped)
+			myTransform.RotateAround(transform.position, Vector3.up, 40.0f * Time.deltaTime);
 	}
 
 	/// <summary>
@@ -55,9 +56,6 @@ public class Bonus : NetworkBehaviour {
 			GameObject particles = Instantiate (BonusParticles);
 			particles.transform.position = transform.position;
 			particles.name = gameObject.name + "Particules";
-
-			// Destroy the particles after 1 second
-			Destroy (particles, 1.0f);
 
 			// Destroy itself
 			Destroy (gameObject);
