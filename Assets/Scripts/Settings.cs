@@ -8,15 +8,32 @@ public class Settings : MonoBehaviour {
 
 	[Header("Prefabs")]
 	public GameObject bombPrefab;
-	public GameObject zaWaroduPrefab;
 	public GameObject exploPrefab;
+	public GameObject theWorldPrefab;
 	public GameObject[] bonusPrefabs;
+
+	[Header("Sounds")]
+	public AudioClip theWorldSound;
+	public AudioClip timeResumeSound;
 
 	[Header("Game")]
 	public bool gamePaused = true;
 	public bool timeStopped = false;
 	public bool nightMode = false;
+	[Space(10)]
+
 	public float gameTimer = 180.0f;
+	public float theWorldTimer = 9.0f;
+	[Space(10)]
+
+	[Range(0, 100.0f)]
+	public float powerProbability = 100.0f;
+
+	[Range(0, 100.0f)]
+	public float numProbability = 0;
+
+	[Range(0, 100.0f)]
+	public float speedProbability = 0;
 
 	void Awake() {
 
