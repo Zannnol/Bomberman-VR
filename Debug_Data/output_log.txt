@@ -6,6 +6,25 @@ Direct3D:
     Vendor:   ATI
     VRAM:     2027 MB
 Begin MonoManager ReloadAssembly
+<<<<<<< HEAD
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.247 seconds
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3520x1080 at 0,0
+<RI> Initializing input.
+=======
 Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll (this message is harmless)
@@ -26,4 +45,5 @@ XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
  
 (Filename:  Line: 54)
 
+>>>>>>> origin/work
 <RI> Input initialized.

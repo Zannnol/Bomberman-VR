@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class Timer : MonoBehaviour {
+public class Timer : NetworkBehaviour {
 
 	private Settings settings;
 	private float timer;

@@ -12,19 +12,16 @@ public class PlayerMovements : NetworkBehaviour {
 	[SyncVar] public int bombPower = 1;
 	[SyncVar] public float speed = 7.0f;
 	[SyncVar] public bool bombPush = false;
-	public bool zaWarodu = true;
-	public AudioClip zaWaroduSound;
 
 	private Transform myTransform;
 	private CharacterController controller;
 	private Settings settings;
 	private GameObject playerStats;
 
-	private Collider currentBomb;
-	private bool onBomb = false;
-
-	private bool throwing = false;
 	private BombExplosion bombBE;
+
+	private bool onBomb = false;
+	private bool zaWarodu = true;
 
     //Wiimote
     private WiimoteApi.Wiimote wiimote;
@@ -32,21 +29,75 @@ public class PlayerMovements : NetworkBehaviour {
     private int wiimoteData;
     private bool isWiimote = false;
 
-	/// <summary>
-	/// Make the server spawn a bomb.
-	/// </summary>
-	/// <param name="x">The x coordinate for the bomb.</param>
-	/// <param name="z">The z coordinate for the bomb.</param>
 	[Command]
-	void CmdSpawnBomb(float x, float z) {
+	public void CmdSpawn(GameObject obj) {
+
+		NetworkServer.Spawn(obj);
+	}
+
+	[Command]
+	void CmdSpawnBomb(Vector3 pos) {
 
 		GameObject bomb = Instantiate (settings.bombPrefab);
-		bomb.transform.position = new Vector3 (x, 0.75f, z);
+		bomb.transform.position = new Vector3 (pos.x, 0.7f, pos.z);
 		bomb.GetComponent<BombExplosion> ().playerMove = GetComponent<PlayerMovements> ();
 		bomb.GetComponent<BombExplosion> ().bombPower = bombPower;
 		bomb.name = "Bomb";
 
-		NetworkServer.SpawnWithClientAuthority (bomb, connectionToClient);
+		//var bombCollider = bomb.GetComponent<BoxCollider> ();
+
+		NetworkServer.Spawn (bomb);
+
+		// Server who called
+		/*
+		if (localPlayerAuthority) {
+
+			print ("Called by server");
+			bombCollider.isTrigger = false;
+			NetworkServer.Spawn (bomb);
+			bombCollider.isTrigger = true;
+			// Trigger true only on server
+		
+		// Client who called
+		} else {
+		
+			print ("Called by client");
+			NetworkServer.Spawn (bomb);
+			bombCollider.isTrigger = false;
+		}*/
+	}
+
+	[Command]
+	public void CmdSpawnExplo(Vector3 pos, GameObject parent) {
+
+		GameObject explo = Instantiate (settings.exploPrefab);
+		explo.transform.position = pos;
+		explo.transform.parent = parent.transform;
+		explo.name = "Explosion";
+
+		NetworkServer.Spawn(explo);
+	}
+
+	[Command]
+	public void CmdSpawnBonus(int bonusId, Vector3 pos) {
+	
+		GameObject bonus = Instantiate (settings.bonusPrefabs[bonusId]);
+		bonus.transform.position = new Vector3 (pos.x, 1.0f, pos.z);
+		bonus.transform.eulerAngles += new Vector3 (15.0f, 0, 0);
+		bonus.name = settings.bonusPrefabs[bonusId].name;
+
+		NetworkServer.Spawn (bonus);
+	}
+
+	[Command]
+	void CmdSpawnTheWorld() {
+	
+		GameObject theWorld = Instantiate (settings.theWorldPrefab);
+		theWorld.transform.position = myTransform.position;
+		theWorld.GetComponent<TheWorld> ().owner = gameObject;
+		theWorld.name = "The World";
+
+		NetworkServer.Spawn (theWorld);
 	}
 
 	/// <summary>
@@ -56,42 +107,6 @@ public class PlayerMovements : NetworkBehaviour {
 	void CmdPause() {
 	
 		settings.gamePaused = false;
-	}
-
-	/// <summary>
-	/// Make the server spawn an explosion.
-	/// </summary>
-	/// <param name="x">The x coordinate for the explosion.</param>
-	/// <param name="z">The z coordinate for the explosion.</param>
-	/// <param name="parent">The parent of the explosion.</param>
-	[Command]
-	public void CmdSpawnExplo(float x, float z, GameObject parent) {
-
-		var explo = Instantiate (settings.exploPrefab);
-		explo.transform.parent = parent.transform;
-		explo.transform.position = new Vector3(x, 1.0f, z);
-		explo.name = "Explosion";
-
-		NetworkServer.Spawn (explo);
-
-		Destroy (explo, 1.0f);
-	}
-
-	/// <summary>
-	/// Make the server spawn a bonus.
-	/// </summary>
-	/// <param name="position">The position for the bonus.</param>
-	[Command]
-	public void CmdSpawnBonus(Vector3 position) {
-
-		int randBonus = (int)UnityEngine.Random.Range (0, 2.999f);
-
-		var currentBonus = Instantiate(settings.bonusPrefabs [randBonus]);
-		currentBonus.transform.position = position;
-		currentBonus.transform.eulerAngles += new Vector3 (15.0f, 0, 0);
-		currentBonus.name = settings.bonusPrefabs[randBonus].name;
-
-		NetworkServer.Spawn (currentBonus);
 	}
 
 	/// <summary>
@@ -134,20 +149,20 @@ public class PlayerMovements : NetworkBehaviour {
 			return;
 
 		gameObject.layer = 0;
+		myTransform.FindChild ("Bomberman").gameObject.layer = 0;
 
 		// Correct the minimap rotation
-		settings.playerHUD[1].transform.eulerAngles = new Vector3 (90.0f, transform.eulerAngles.y, 0);
+		settings.playerHUD[1].transform.eulerAngles = new Vector3 (90.0f, 180.0f + myTransform.eulerAngles.y, 0);
 
 		// Create the camera
-		/*
 		var cam = new GameObject ();
 		cam.AddComponent<Camera> ();
 		cam.AddComponent<FlareLayer> ();
 		cam.AddComponent<AudioListener> ();
-		cam.transform.position = myTransform.position + new Vector3 (0, 2.0f, -0.1f);
-		cam.transform.rotation = myTransform.rotation;
+		cam.transform.position = myTransform.position + new Vector3 (0, 1.5f, 0);
+		cam.transform.eulerAngles = myTransform.eulerAngles + new Vector3(0, 180.0f, 0);
 		cam.transform.parent = myTransform;
-		cam.name = "Head";*/
+		cam.name = "Head";
 
 		// Check if the night mode is activated
 		if (settings.nightMode)
@@ -190,16 +205,19 @@ public class PlayerMovements : NetworkBehaviour {
 
 		} else if (Input.GetAxis ("Fire2") == 1 && zaWarodu) {
 		
-			StartCoroutine (ZaWarodu ());
-			zaWarodu = false;
+			//StartCoroutine (TheWorld ());
+			//zaWarodu = false;
 		}
-		/*
+			
         if(isWiimote) {
+			
             UseWiimote();
+
             if (wiimote.Accel.accel[0] > 650 && !onBomb && bombNum > 0) {
+				
                 Bomb();
             }
-        }*/
+        }
 	}
 
 	/// <summary>
@@ -207,10 +225,10 @@ public class PlayerMovements : NetworkBehaviour {
 	/// </summary>
 	void Move() {
 
-		float h = Input.GetAxis ("Horizontal") * Time.deltaTime * speed;
 		float v = Input.GetAxis ("Vertical") * Time.deltaTime * speed;
+		float h = Input.GetAxis ("Horizontal") * Time.deltaTime * speed;
 
-		WalkAnim (ref h, v);
+		WalkAnim (ref v, h);
 			
 		controller.Move (myTransform.TransformDirection(new Vector3(-h, 0, -v)));
 	}
@@ -220,8 +238,8 @@ public class PlayerMovements : NetworkBehaviour {
 	/// </summary>
 	void Look() {
 
-		float h = Input.GetAxisRaw ("HorizontalRight") * Time.deltaTime * 175.0f;
 		float v = Input.GetAxisRaw ("VerticalRight") * Time.deltaTime * 175.0f;
+		float h = Input.GetAxisRaw ("HorizontalRight") * Time.deltaTime * 175.0f;
 
 		myTransform.Rotate (new Vector3 (0, h, 0));
 
@@ -232,55 +250,61 @@ public class PlayerMovements : NetworkBehaviour {
 	/// Plant a bomb.
 	/// </summary>
 	void Bomb() {
-		
 			
-			Vector3 pos = settings.RoundPosition (myTransform.position);
+		Vector3 pos = settings.RoundPosition (myTransform.position);
 
-			bombNum--;
+		CmdSpawnBomb (pos);
 
-			CmdSpawnBomb (pos.x, pos.z);
-
-			onBomb = true;
+		bombNum--;
+		onBomb = true;
 	}
 
-	void WalkAnim(ref float h, float v) {
+	/// <summary>
+	/// Manages the animation of the walk.
+	/// </summary>
+	/// <param name="h">The value of the left joystick vertical axis.</param>
+	/// <param name="v">The value of the left joystick horizontal axis.</param>
+	void WalkAnim(ref float v, float h) {
 
-		if (h != 0) {
+		Animator walkAnim = GetComponent<Animator> ();
 
-			GetComponent<Animator> ().SetBool ("Walking", true);
-			GetComponent<Animator> ().SetFloat ("Speed", speed / 8.0f * h * 10.0f);
-		}
+		if (v == 0 && h == 0) {
 
-		if(v != 0) {
+			walkAnim.SetBool ("Walking", false);
+			walkAnim.SetFloat ("Speed", 1.0f);
 
-			GetComponent<Animator> ().SetBool ("Walking", true);
-			GetComponent<Animator> ().SetFloat ("Speed", speed / 8.0f * v * 10.0f);
-		}
+		} else {
 
-		if(h == 0 && v == 0) {
+			walkAnim.SetBool ("Walking", true);
+		
+			if (v != 0)
+				walkAnim.SetFloat ("Speed", speed / 8.0f * v * 10.0f);
 
-			GetComponent<Animator> ().SetBool ("Walking", false);
-			GetComponent<Animator> ().SetFloat ("Speed", 1.0f);
+			if (h != 0)
+				walkAnim.SetFloat ("Speed", speed / 8.0f * h * 10.0f);
 		}
 	}
 
    /// <summary>
    /// Initiate the Wiimotes
    /// </summary>
-    void InitWiimotes()
-    {
+    void InitWiimotes() {
+		
         WiimoteManager.FindWiimotes();
-        foreach (WiimoteApi.Wiimote remote in WiimoteManager.Wiimotes)
-        {
+
+        foreach (WiimoteApi.Wiimote remote in WiimoteManager.Wiimotes) {
+			
             wiimote = remote;
             wiimote.SendPlayerLED(false, false, false, false);
         }
+
         //If there's no Wiimote detected
-        if (wiimote == null)
-        {
+		if (wiimote == null) {
+			
             isWiimote = false;
             return;
         }
+
         wiimote.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL_EXT16);
         isWiimote = true;
     }
@@ -288,34 +312,35 @@ public class PlayerMovements : NetworkBehaviour {
     /// <summary>
     /// Controls for the Wiimotes and Nunchuck
     /// </summary>
-    void UseWiimote()
-    {
-        do
-        {
+    void UseWiimote() {
+		
+        do {
             wiimoteData = wiimote.ReadWiimoteData();
+
             //Movements with the nunuchuck
-            if (wiimote.current_ext == ExtensionController.NUNCHUCK)
-            {
+            if (wiimote.current_ext == ExtensionController.NUNCHUCK) {
+				
                 nunchuck = wiimote.Nunchuck;
                 float[] stick = nunchuck.GetStick01();
                 speed = 2.0f;
 
                 //Right & left
-                if (Math.Abs(stick[0]) > 0.8f)
-                {
+                if (Math.Abs(stick[0]) > 0.8f) {
+					
                     controller.Move(myTransform.TransformDirection(Vector3.right * Time.deltaTime * speed));
-                }
-                else if (Math.Abs(stick[0]) < 0.2f)
-                {
+
+                } else if (Math.Abs(stick[0]) < 0.2f) {
+					
                     controller.Move(myTransform.TransformDirection(Vector3.left * Time.deltaTime * speed));
                 }
+
                 //Top & Bottom
-                if (Math.Abs(stick[1]) > 0.8f)
-                {
+                if (Math.Abs(stick[1]) > 0.8f) {
+					
                     controller.Move(myTransform.TransformDirection(Vector3.forward * Time.deltaTime * speed));
-                }
-                else if (Math.Abs(stick[1]) < 0.2f)
-                {
+
+                } else if (Math.Abs(stick[1]) < 0.2f) {
+					
                     controller.Move(myTransform.TransformDirection(Vector3.back * Time.deltaTime * speed));
                 }
             }
@@ -328,18 +353,20 @@ public class PlayerMovements : NetworkBehaviour {
 	/// <param name="collider">The GameObject who enter the trigger.</param>
 	void OnTriggerEnter(Collider collider) {
 
-		if (!isLocalPlayer)
+		if (!isServer)
 			return;
 
-		if (collider.CompareTag ("Bomb")) {
-
-			currentBomb = collider;
-
-		} else if (collider.CompareTag ("Explosion")) {
+		if (collider.CompareTag ("Explosion")) {
 
 			GameObject.Find ("Minimap Camera").GetComponent<Camera> ().rect = new Rect (Vector2.zero, new Vector2 (1.0f, 1.0f));
 			Destroy (gameObject);
 
+		} else if (collider.CompareTag ("The World")) {
+
+			if (collider.GetComponent<TheWorld> ().owner != gameObject) {
+				
+				settings.timeStopped = true;
+			}
 		}
 	}
 		
@@ -351,8 +378,6 @@ public class PlayerMovements : NetworkBehaviour {
 
 		if (!isLocalPlayer)
 			return;
-
-		currentBomb = default(Collider);
 
 		if (collider.CompareTag ("Bomb")) {
 			
@@ -374,26 +399,25 @@ public class PlayerMovements : NetworkBehaviour {
 			if (!isLocalPlayer || col.GetComponent<BombExplosion> ().pushing)
 				return;
 
-			if (!isServer) {
-
+			if (!isServer)
 				col.GetComponent<BombExplosion> ().Push (myTransform.position);
-			}
 
 			col.GetComponent<BombExplosion> ().CmdPush (myTransform.position);
 
-		} else if (col.CompareTag ("Wall") || col.CompareTag ("Brick")) {
-		
-			col.layer = 0;
 		}
 	}
 
-	IEnumerator ZaWarodu() {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns>The world.</returns>
+	IEnumerator TheWorld() {
 	
 		GetComponent<AudioSource> ().volume = 0.5f;
-		GetComponent<AudioSource> ().PlayOneShot (zaWaroduSound);
+		GetComponent<AudioSource> ().PlayOneShot (settings.theWorldSound);
 
 		yield return new WaitForSeconds (1.8f);
 
-		Instantiate (settings.zaWaroduPrefab, myTransform.position, Quaternion.identity);
+		CmdSpawnTheWorld ();
 	}
 }
