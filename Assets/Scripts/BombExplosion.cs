@@ -61,16 +61,16 @@ public class BombExplosion : NetworkBehaviour {
 			exploTimer = 10.0f;
 
 			GameObject exploParent = new GameObject ();
+			exploParent.AddComponent<Explosion> ();
 			exploParent.AddComponent<NetworkIdentity> ().localPlayerAuthority = true;
 			ClientScene.RegisterPrefab (exploParent);
 			exploParent.name = "Explosions";
-			Destroy (exploParent, exploDispa);
 
 			// Center of the explosion
 			if (playerMove) {
-				
-				var position = settings.RoundPosition(myTransform.position + new Vector3 (0, 0.6f, 0));
-				playerMove.CmdSpawnExplo (position.x, position.z, exploParent);
+
+				Vector3 pos = settings.RoundPosition(myTransform.position + new Vector3 (0, 0.6f, 0));
+				playerMove.CmdSpawnExplo (pos, exploParent);
 			}
 
 			// Propagation of the explosion
@@ -78,11 +78,10 @@ public class BombExplosion : NetworkBehaviour {
 			ExploPropag (ref right, Directions.Right, exploParent);
 			ExploPropag (ref down, Directions.Down, exploParent);
 			ExploPropag (ref left, Directions.Left, exploParent);
-
-			if (playerMove) {
 				
+
+			if (playerMove)
 				playerMove.RpcIncrem ();
-			}
 
 			// Play the explosion sound
 			AudioSource.PlayClipAtPoint (exploSound, myTransform.position);
@@ -163,6 +162,30 @@ public class BombExplosion : NetworkBehaviour {
 		midAxe = callPos - new Vector3(0, 0, mid);
 	}
 
+	void Bonus (Vector3 pos) {
+
+		float randBonus = UnityEngine.Random.Range (0.0001f, 100.0f);
+
+		float powerProb = settings.powerProbability;
+		float numProb = settings.numProbability;
+		float speedProb = settings.speedProbability;
+
+		if(randBonus > 0 && randBonus <= powerProb && powerProb != 0) {
+
+			playerMove.CmdSpawnBonus (0, pos);
+		}
+
+		if(randBonus > powerProb && randBonus <= (powerProb + numProb) && numProb != 0) {
+
+			playerMove.CmdSpawnBonus (1, pos);
+		}
+
+		if (randBonus > (powerProb + numProb) && randBonus <= (powerProb + numProb + speedProb) && speedProb != 0) {
+
+			playerMove.CmdSpawnBonus (2, pos);
+		}
+	}
+
 	/// <summary>
 	/// Spawn the explosions into a direction.
 	/// </summary>
@@ -195,8 +218,8 @@ public class BombExplosion : NetworkBehaviour {
 			}
 
 			// Get the explosion position and get what's on it
-			Vector3 position = settings.RoundPosition(myTransform.position + new Vector3 (xPropag, 0.25f, zPropag));
-			Collider[] collider = Physics.OverlapSphere (position, 0.5f);
+			Vector3 pos = settings.RoundPosition(myTransform.position + new Vector3 (xPropag, 0.875f, zPropag));
+			Collider[] collider = Physics.OverlapSphere (pos, 0.5f);
 
 			for (int j = 0; j < collider.Length; j++) {
 					
@@ -208,12 +231,9 @@ public class BombExplosion : NetworkBehaviour {
 				} else if (collider [j].CompareTag ("Brick") && isFree) {
 
 					isFree = false;
-					
-					if ((int)Random.Range (0, 100.999f) > 70) {
 
-						// Spawn a bonus
-						playerMove.GetComponent<PlayerMovements> ().CmdSpawnBonus (position);
-					}
+					// Spawn a bonus
+					Bonus (pos);
 
 					// Destroy the block
 					Destroy (collider[j].gameObject);
@@ -235,8 +255,12 @@ public class BombExplosion : NetworkBehaviour {
 				
 				if (playerMove) {
 
+					GameObject explo = (GameObject)Instantiate (settings.exploPrefab, pos, Quaternion.identity);
+					explo.transform.parent = parent.transform;
+					explo.name = "Explosion";
+
 					// Spawn an explosion
-					playerMove.CmdSpawnExplo (position.x, position.z, parent);
+					playerMove.CmdSpawn (explo);
 				}
 			}
 		}
