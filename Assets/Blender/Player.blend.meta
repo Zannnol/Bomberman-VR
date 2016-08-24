@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 61f1f5f984e28ec4e849e777bcfb6f70
-timeCreated: 1465305441
+guid: 41f62b61738391045852162d43f5f1ee
+timeCreated: 1471682813
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -43,8 +43,9 @@ ModelImporter:
     400034: Tibia_R
     4300000: Bomberman
     7400000: Default Take
-    7400002: Idle
-    7400004: Walk
+    7400002: Death
+    7400004: Idle
+    7400006: Walk
     9500000: //RootNode
     13700000: Bomberman
   materials:
@@ -54,7 +55,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -67,135 +68,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Idle
-      takeName: Idle
-      firstFrame: -1
-      lastFrame: 119
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/Body
-        weight: 1
-      - path: Armature/Body/Arm_L
-        weight: 1
-      - path: Armature/Body/Arm_L/Forearm_L
-        weight: 1
-      - path: Armature/Body/Arm_L/Forearm_L/Hand_L
-        weight: 1
-      - path: Armature/Body/Arm_R
-        weight: 1
-      - path: Armature/Body/Arm_R/Forearm_R
-        weight: 1
-      - path: Armature/Body/Arm_R/Forearm_R/Hand_R
-        weight: 1
-      - path: Armature/Body/Head
-        weight: 1
-      - path: Armature/Body/Head/HeadAntenna
-        weight: 1
-      - path: Armature/Body/Thigh_L
-        weight: 1
-      - path: Armature/Body/Thigh_L/Tibia_L
-        weight: 1
-      - path: Armature/Body/Thigh_L/Tibia_L/Foot_L
-        weight: 1
-      - path: Armature/Body/Thigh_R
-        weight: 1
-      - path: Armature/Body/Thigh_R/Tibia_R
-        weight: 1
-      - path: Armature/Body/Thigh_R/Tibia_R/Foot_R
-        weight: 1
-      - path: Bomberman
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Walk
-      takeName: Walk
-      firstFrame: -1
-      lastFrame: 29
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/Body
-        weight: 1
-      - path: Armature/Body/Arm_L
-        weight: 1
-      - path: Armature/Body/Arm_L/Forearm_L
-        weight: 1
-      - path: Armature/Body/Arm_L/Forearm_L/Hand_L
-        weight: 1
-      - path: Armature/Body/Arm_R
-        weight: 1
-      - path: Armature/Body/Arm_R/Forearm_R
-        weight: 1
-      - path: Armature/Body/Arm_R/Forearm_R/Hand_R
-        weight: 1
-      - path: Armature/Body/Head
-        weight: 1
-      - path: Armature/Body/Head/HeadAntenna
-        weight: 1
-      - path: Armature/Body/Thigh_L
-        weight: 1
-      - path: Armature/Body/Thigh_L/Tibia_L
-        weight: 1
-      - path: Armature/Body/Thigh_L/Tibia_L/Foot_L
-        weight: 1
-      - path: Armature/Body/Thigh_R
-        weight: 1
-      - path: Armature/Body/Thigh_R/Tibia_R
-        weight: 1
-      - path: Armature/Body/Thigh_R/Tibia_R/Foot_R
-        weight: 1
-      - path: Bomberman
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
