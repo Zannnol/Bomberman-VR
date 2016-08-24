@@ -1,43 +1,36 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.Networking;
 
-public class Explosion : MonoBehaviour {
+public class Explosion : NetworkBehaviour {
 
-	private Settings settings;
-	private Transform myTransform;
+	private ParticleSystem particles;
 
-	[SerializeField] private float destroyTimer = 0.4f;
+	private float timeLeft = 0.4f;
 
 	void Awake() {
-
-		settings = GameObject.Find ("GameSettings").GetComponent<Settings> ();
-		myTransform = GetComponent<Transform> ();
+	
+		particles = GetComponent<ParticleSystem> ();
 	}
 
-	void Update () {
-
-		foreach (Transform child in myTransform) {
-
-			ParticleSystem exploParticles = child.GetComponent<ParticleSystem> ();
-
-			if (settings.timeStopped) {
+	void Update() {
+	
+		if (!GameManager.isTimeStopped) {
 			
-				exploParticles.Pause ();
-
-			} else if(exploParticles.isPaused) {
+			timeLeft -= Time.deltaTime;
+			if (timeLeft <= 0)
+				NetworkServer.Destroy (gameObject);
+			else if (particles.isPaused)
+				particles.Play ();
 			
-				exploParticles.Play ();
-			} 
+		} else {
+		
+			particles.Pause ();
 		}
-			
-		if (!settings.timeStopped) {
-			
-			destroyTimer -= Time.deltaTime;
-
-			if (destroyTimer <= 0) {
-
-				Destroy (gameObject);
-			}
-		}
+	}
+	
+	void OnTriggerEnter(Collider col) {
+	
+		if (col.tag == "Player")
+			col.GetComponent<Player> ().Die ();
 	}
 }

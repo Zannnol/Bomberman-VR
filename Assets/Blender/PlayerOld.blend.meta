@@ -1,0 +1,305 @@
+fileFormatVersion: 2
+guid: 87c599a56e406f7479fe0e120af15a19
+timeCreated: 1469965050
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arm_L
+    100002: Arm_R
+    100004: Armature
+    100006: Body
+    100008: Bomberman
+    100010: Foot_L
+    100012: Foot_R
+    100014: Forearm_L
+    100016: Forearm_R
+    100018: Hand_L
+    100020: Hand_R
+    100022: Head
+    100024: HeadAntenna
+    100026: //RootNode
+    100028: Thigh_L
+    100030: Thigh_R
+    100032: Tibia_L
+    100034: Tibia_R
+    400000: Arm_L
+    400002: Arm_R
+    400004: Armature
+    400006: Body
+    400008: Bomberman
+    400010: Foot_L
+    400012: Foot_R
+    400014: Forearm_L
+    400016: Forearm_R
+    400018: Hand_L
+    400020: Hand_R
+    400022: Head
+    400024: HeadAntenna
+    400026: //RootNode
+    400028: Thigh_L
+    400030: Thigh_R
+    400032: Tibia_L
+    400034: Tibia_R
+    4300000: Bomberman
+    7400000: Default Take
+    7400002: Idle
+    7400004: Walk
+    9500000: //RootNode
+    13700000: Bomberman
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 119
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Body
+        weight: 1
+      - path: Armature/Body/Arm_L
+        weight: 1
+      - path: Armature/Body/Arm_L/Forearm_L
+        weight: 1
+      - path: Armature/Body/Arm_L/Forearm_L/Hand_L
+        weight: 1
+      - path: Armature/Body/Arm_R
+        weight: 1
+      - path: Armature/Body/Arm_R/Forearm_R
+        weight: 1
+      - path: Armature/Body/Arm_R/Forearm_R/Hand_R
+        weight: 1
+      - path: Armature/Body/Head
+        weight: 1
+      - path: Armature/Body/Head/HeadAntenna
+        weight: 1
+      - path: Armature/Body/Thigh_L
+        weight: 1
+      - path: Armature/Body/Thigh_L/Tibia_L
+        weight: 1
+      - path: Armature/Body/Thigh_L/Tibia_L/Foot_L
+        weight: 1
+      - path: Armature/Body/Thigh_R
+        weight: 1
+      - path: Armature/Body/Thigh_R/Tibia_R
+        weight: 1
+      - path: Armature/Body/Thigh_R/Tibia_R/Foot_R
+        weight: 1
+      - path: Bomberman
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: -1
+      lastFrame: 119
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Body
+        weight: 1
+      - path: Armature/Body/Arm_L
+        weight: 1
+      - path: Armature/Body/Arm_L/Forearm_L
+        weight: 1
+      - path: Armature/Body/Arm_L/Forearm_L/Hand_L
+        weight: 1
+      - path: Armature/Body/Arm_R
+        weight: 1
+      - path: Armature/Body/Arm_R/Forearm_R
+        weight: 1
+      - path: Armature/Body/Arm_R/Forearm_R/Hand_R
+        weight: 1
+      - path: Armature/Body/Head
+        weight: 1
+      - path: Armature/Body/Head/HeadAntenna
+        weight: 1
+      - path: Armature/Body/Thigh_L
+        weight: 1
+      - path: Armature/Body/Thigh_L/Tibia_L
+        weight: 1
+      - path: Armature/Body/Thigh_L/Tibia_L/Foot_L
+        weight: 1
+      - path: Armature/Body/Thigh_R
+        weight: 1
+      - path: Armature/Body/Thigh_R/Tibia_R
+        weight: 1
+      - path: Armature/Body/Thigh_R/Tibia_R/Foot_R
+        weight: 1
+      - path: Bomberman
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: -1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Body
+        weight: 1
+      - path: Armature/Body/Arm_L
+        weight: 1
+      - path: Armature/Body/Arm_L/Forearm_L
+        weight: 1
+      - path: Armature/Body/Arm_L/Forearm_L/Hand_L
+        weight: 1
+      - path: Armature/Body/Arm_R
+        weight: 1
+      - path: Armature/Body/Arm_R/Forearm_R
+        weight: 1
+      - path: Armature/Body/Arm_R/Forearm_R/Hand_R
+        weight: 1
+      - path: Armature/Body/Head
+        weight: 1
+      - path: Armature/Body/Head/HeadAntenna
+        weight: 1
+      - path: Armature/Body/Thigh_L
+        weight: 1
+      - path: Armature/Body/Thigh_L/Tibia_L
+        weight: 1
+      - path: Armature/Body/Thigh_L/Tibia_L/Foot_L
+        weight: 1
+      - path: Armature/Body/Thigh_R
+        weight: 1
+      - path: Armature/Body/Thigh_R/Tibia_R
+        weight: 1
+      - path: Armature/Body/Thigh_R/Tibia_R/Foot_R
+        weight: 1
+      - path: Bomberman
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
