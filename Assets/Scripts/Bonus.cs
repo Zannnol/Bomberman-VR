@@ -1,64 +1,43 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Networking;
-using System.Collections;
 
-public class Bonus : NetworkBehaviour {
+public class Bonus : MonoBehaviour {
 
-	public GameObject BonusParticles;
-
-	private Settings settings;
 	private Transform myTransform;
-	private Text[] playerStatsTexts;
+
+	[SerializeField]
+	private string bonusType = "Unknown";
 
 	void Awake() {
-
-		settings = GameObject.Find ("GameSettings").GetComponent<Settings> ();
+	
 		myTransform = GetComponent<Transform> ();
-		playerStatsTexts = settings.playerHUD [0].GetComponentsInChildren<Text> ();
 	}
 
-	void Update () {
-
-		if(!settings.timeStopped)
-			myTransform.RotateAround(transform.position, Vector3.up, 40.0f * Time.deltaTime);
+	void Update() {
+	
+		myTransform.RotateAround(myTransform.position, Vector3.up, 40.0f * Time.deltaTime);
 	}
 
-	/// <summary>
-	/// Called if an object enter the trigger of the bonus.
-	/// </summary>
-	/// <param name="collider">The GameObject who enter the trigger.</param>
-	void OnTriggerEnter(Collider collider) {
+	void Active(Player player) {
 
-		// Check if the object who entered the trigger is a player
-		if (collider.CompareTag ("Player")) {
+		switch (bonusType) {
 
-			// Choose and increase the corresponding bonus
-			switch (name) {
-
-				case "BonusPower":
-					collider.GetComponent<PlayerMovements> ().bombPower++;
-					playerStatsTexts[0].text = collider.GetComponent<PlayerMovements> ().bombPower.ToString();
-					break;
-
-				case "BonusNum":
-					collider.GetComponent<PlayerMovements> ().bombNum++;
-					playerStatsTexts[1].text = collider.GetComponent<PlayerMovements> ().bombNum.ToString();
-					break;
-
-				case "BonusSpeed":
-					collider.GetComponent<PlayerMovements> ().speed += 1.0f;
-					playerStatsTexts[2].text = (collider.GetComponent<PlayerMovements> ().speed - 7).ToString();
-					break;
-			}
-
-			// Create the particles
-			GameObject particles = Instantiate (BonusParticles);
-			particles.transform.position = transform.position;
-			particles.name = gameObject.name + "Particules";
-
-			// Destroy itself
-			Destroy (gameObject);
+			case "BonusNum":
+				player.numBomb++;
+				break;
+			case "BonusRange":
+				player.range++;
+				break;
+			case "BonusSpeed":
+				player.speed++;
+				break;
 		}
+
+		Destroy (gameObject);
+	}
+
+	void OnTriggerEnter(Collider col) {
+	
+		if (col.tag == "Player")
+			Active (col.GetComponent<Player> ());
 	}
 }

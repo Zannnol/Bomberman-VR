@@ -1,133 +1,116 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
-using System.Collections;
 
-public class MapGeneration : NetworkBehaviour {
+public class MapGeneration : MonoBehaviour {
 
-	public GameObject wallPrefab;
-	public GameObject blockPrefab;
-	public GameObject spawnObject;
+	[SerializeField]
+	private GameObject wallPrefab, brickPrefab, spawnPrefab;
+	[SerializeField]
+	private int xMap = 15, zMap = 13;
 
-	[SerializeField] private int xMap = 15;
-	[SerializeField] private int zMap = 13;
-
-	private GameObject walls;
-	private GameObject blocks;
-	private GameObject spawnpoints;
-	private float wallSize;
+	private Transform myTransform;
 
 	void Awake() {
-		
-		wallSize = wallPrefab.transform.lossyScale.x * 2.0f;
-		walls = GameObject.Find ("Walls");
-		blocks = GameObject.Find ("Blocks");
-		spawnpoints = GameObject.Find ("Spawnpoints");
+
+		myTransform = GetComponent<Transform> ();
 	}
-		
+
 	void Start() {
 
-		if (xMap % 2 == 1 && zMap % 2 == 1) {
-			
-			// Fill the map
-			float xFill = 0;
-			for (int i = 0; i < xMap; i++) {
-			
-				float zFill = 0;
-				for (int j = 0; j < zMap; j++) {
-				
-					createWall (xFill, zFill, "Wall", wallPrefab);
-					zFill += wallSize;
-				}
+		// Creation of the parent for the walls
+		GameObject walls = new GameObject ();
+		walls.name = "Walls";
+		walls.isStatic = true;
+		walls.transform.parent = myTransform;
 
-				xFill += wallSize;
-				zFill = 0;
-			}
-			
-			// Transform the map into a grid
-			float xGrid = wallSize;
-			for (int i = 0; i < xMap - 2; i++) {
-			
-				float zGrid = wallSize;
-				for (int j = 0; j < zMap - 2; j++) {
-				
-					Collider[] wallCollider = Physics.OverlapSphere (new Vector3 (xGrid, wallSize, zGrid), 0.5f);
+		// Creation of the parent for the bricks
+		GameObject bricks = new GameObject ();
+		bricks.name = "Bricks";
+		bricks.isStatic = true;
+		bricks.transform.parent = myTransform;
 
-					if (wallCollider.Length != 0) {
+		Vector3 blockPos = new Vector3 (0, 0, 0);
+
+		// Placement of the walls
+		for (int j = 0; j < zMap; j++) {
+
+			if (j % 2 == 0) {
+
+				for (int i = 0; i < xMap; i++) {
+
+					if (i % 2 == 0 || j == 0 || j == zMap - 1) {
 						
-						Destroy (wallCollider [0].gameObject);
+						PlaceObject (wallPrefab, blockPos + new Vector3(0, 0.1f, 0), walls);
 
-						if (xGrid == wallSize && zGrid == wallSize || xGrid == xMap * 2 - 4 && zGrid == zMap * 2 - 4) {
-						
-							var currentSpawn = Instantiate (spawnObject);
-							currentSpawn.transform.position = new Vector3 (xGrid, 1.0f, zGrid);
-							currentSpawn.transform.parent = spawnpoints.transform;
-							currentSpawn.name = "Spawnpoint";
-
-							if (GameObject.FindGameObjectsWithTag ("Respawn").Length == 2) {
-								currentSpawn.transform.eulerAngles += new Vector3 (0, 180.0f, 0);
-							}
-
-						} else {
-							
-							GameObject block = Instantiate (blockPrefab);
-							block.transform.position = new Vector3 (xGrid, 1.0f, zGrid);
-							block.transform.parent = blocks.transform;
-							block.name = "Brick";
-						}
-					}
-
-					if (i % 2 == 0) {
-						zGrid += wallSize;
 					} else {
-						zGrid += wallSize * 2;
+					
+						PlaceObject (brickPrefab, blockPos, bricks);
 					}
+					blockPos += new Vector3 (2, 0, 0);
 				}
 
-				xGrid += wallSize;
-				zGrid = 0;
+			} else {
+
+				PlaceObject (wallPrefab, blockPos + new Vector3(0, 0.1f, 0), walls);
+				PlaceObject (wallPrefab, blockPos + new Vector3 (xMap * 2 - 2, 0.1f, 0), walls);
+
+				for (int i = 0; i < xMap - 2; i++) {
+
+					blockPos += new Vector3 (2, 0, 0);
+					PlaceObject (brickPrefab, blockPos, bricks);
+				}
 			}
+			blockPos += new Vector3 (0, 0, 2);
+			blockPos.x = 0;
+		}
 
-			// Floor adjustment
-			var floor = GameObject.CreatePrimitive (PrimitiveType.Plane);
+		// Creation of the parent for the spawnpoints
+		GameObject spawnpoints = new GameObject ();
+		spawnpoints.name = "Spawnpoints";
+		spawnpoints.isStatic = true;
+		spawnpoints.transform.parent = myTransform;
 
-			floor.transform.localScale = new Vector3 (xMap * 0.2f, 1f, zMap * 0.2f);
-			floor.transform.position = new Vector3 (xMap - 1.0f, 0f, zMap - 1.0f);
-			floor.transform.parent = transform;
-			floor.name = "Floor";
+		// Placement of the spawnpoints
+		PlaceObject (spawnPrefab, new Vector3 (2, 0, 2), spawnpoints);
+		PlaceObject (spawnPrefab, new Vector3 (xMap * 2 - 4, 0, zMap * 2 - 4), spawnpoints);
 
-			// Generation of the spawnpoints
-			GameObject[] respawn = GameObject.FindGameObjectsWithTag("Respawn");
+		// Free the space for the spawnpoints
+		foreach(Transform spawnpoint in spawnpoints.transform) {
 
-			// Genererationm of the space for the spawnpoints
-			for (int i = 0; i < respawn.Length; i++) {
+			foreach(Transform child in spawnpoint.transform) {
 
-				foreach (Transform child in respawn[i].transform) {
+				Collider[] colliders = Physics.OverlapSphere (child.transform.position, 0.5f);
 
-					Collider[] spawnCollider = Physics.OverlapSphere (child.transform.position, 0.5f);
-
-					for (int j = 0; j < spawnCollider.Length; j++) {
-
-						if (spawnCollider [j].CompareTag ("Brick")) {
-							Destroy (spawnCollider [j].gameObject);
-						}
+				if (colliders.Length > 0) {
+					if (colliders [0].tag == "Brick") {
+						Destroy (colliders [0].gameObject);
 					}
 				}
 			}
-
-		} else {
-			
-			Debug.LogError ("The values of xMap and zMap must be odd !");
 		}
 	}
 
-	// Function who create a wall on a specified position
-	void createWall(float x, float z, string name, GameObject gameObject) {
-		
-		var currentWall = Instantiate (gameObject);
+	/// <summary>
+	/// Place an object on a position.
+	/// </summary>
+	/// <param name="go">The object to spawn.</param>
+	/// <param name="pos">The position where the object will be spawned.</param>
+	/// <param name="parent">The parent of the object.</param>
+	void PlaceObject(GameObject go, Vector3 pos, GameObject parent = default(GameObject)) {
 
-		currentWall.transform.position = new Vector3 (x, 1.15f, z);
-		currentWall.name = name;
-		currentWall.tag = "Wall";
-		currentWall.transform.parent = walls.transform;
+		Collider[] colliders = Physics.OverlapSphere(pos, 0.75f);
+
+		if (colliders.Length > 0) {
+			Destroy (colliders [0].gameObject);
+		}
+
+		GameObject block = (GameObject)Instantiate (go, pos, Quaternion.identity);
+		block.name = go.name;
+
+		if (parent == default(GameObject)) {
+
+			parent = gameObject;
+		}
+		
+		block.transform.parent = parent.transform;
 	}
 }
