@@ -1,49 +1,203 @@
-Initialize engine version: 5.3.5f1 (960ebf59018a)
+Initialize engine version: 5.4.0f3 (a6d8d714de6f)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: AMD Radeon HD 8750M (ID=0x6600)
+    Renderer: AMD Radeon HD 8600/8700M (ID=0x6600)
     Vendor:   ATI
-    VRAM:     2027 MB
+    VRAM:     2029 MB
 Begin MonoManager ReloadAssembly
-<<<<<<< HEAD
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.247 seconds
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\peticle.DIVTEC\Documents\GitHub\Bomberman-VR\Debug_Data\Managed\System.dll (this message is harmless)
-desktop: 1920x1080 60Hz; virtual: 3520x1080 at 0,0
-<RI> Initializing input.
-=======
-Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.126 seconds
-Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\zannnol\Desktop\ExercicesAtelier\2eme\PortesOuvertes\Git\Bomberman-VR\Debug_Data\Managed\System.dll (this message is harmless)
-desktop: 1920x1080 60Hz; virtual: 3520x1080 at -1600,0
+Platform assembly: C:\Users\peticle\Documents\Unity\Bomberman\Debug_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\peticle\Documents\Unity\Bomberman\Debug_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle\Documents\Unity\Bomberman\Debug_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\peticle\Documents\Unity\Bomberman\Debug_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle\Documents\Unity\Bomberman\Debug_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\peticle\Documents\Unity\Bomberman\Debug_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\peticle\Documents\Unity\Bomberman\Debug_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\peticle\Documents\Unity\Bomberman\Debug_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.179 seconds
+Platform assembly: C:\Users\peticle\Documents\Unity\Bomberman\Debug_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\peticle\Documents\Unity\Bomberman\Debug_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3520x1081 at 0,0
 <RI> Initializing input.
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
-<RI.Hid> Failed to create device file:
- 2 Le fichier spécifié est introuvable.
-
- 
-(Filename:  Line: 54)
-
->>>>>>> origin/work
 <RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 3.216263 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 3128 -> priority: 1 
+  Thread -> id: 2cd0 -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.768187 ms
+Player 104 registered!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 2127.
+Total: 2.662958 ms (FindLiveObjects: 0.260790 ms CreateObjectMapping: 0.232798 ms MarkObjects: 2.120382 ms  DeleteObjects: 0.047586 ms)
+
+Player 105 registered!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 104 wins!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=107]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 104 unregistered!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+Player 105 unregistered!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+UnloadTime: 14.525436 ms
+
+Unloading 44 unused Assets to reduce memory usage. Loaded Objects now: 886.
+Total: 2.513668 ms (FindLiveObjects: 0.089107 ms CreateObjectMapping: 0.142291 ms MarkObjects: 2.135311 ms  DeleteObjects: 0.145091 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.317483 ms
+Player 220 registered!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 2127.
+Total: 2.787055 ms (FindLiveObjects: 0.308376 ms CreateObjectMapping: 0.337768 ms MarkObjects: 2.104987 ms  DeleteObjects: 0.034056 ms)
+
+Player 221 registered!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=223]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=233]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=241]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=241]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=253]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=253]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=262]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=262]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=276]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=285]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=285]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=285]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=317]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=317]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=321]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=321]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=335]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=335]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=345]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=345]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Instance not found when handling Command message [netId=345]
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 221 is dead!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 221 is dead!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 221 is dead!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 220 is dead!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 221 is dead!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 220 is dead!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 220 is dead!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 221 is dead!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Log: connection {1} has been disconnected by timeout; address {::ffff:169.254.35.166%9:49955}
+Player 221 unregistered!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Player 220 unregistered!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
