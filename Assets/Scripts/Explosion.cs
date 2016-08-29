@@ -27,10 +27,4 @@ public class Explosion : NetworkBehaviour {
 			particles.Pause ();
 		}
 	}
-	
-	void OnTriggerEnter(Collider col) {
-	
-		if (col.tag == "Player")
-			col.GetComponent<Player> ().Die ();
-	}
 }

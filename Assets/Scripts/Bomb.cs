@@ -49,6 +49,7 @@ public class Bomb : NetworkBehaviour {
 
 			Explo ();
 
+            // Object reference not set to this object
 			if (GetComponent<NetworkIdentity> ().clientAuthorityOwner.playerControllers [0].gameObject != null) {
 
 				string netID = GetComponent<NetworkIdentity> ().clientAuthorityOwner.playerControllers [0].gameObject.GetComponent<NetworkIdentity> ().netId.ToString ();
@@ -155,12 +156,6 @@ public class Bomb : NetworkBehaviour {
 	}
 
 	[Command]
-	void CmdSetTrigger() {
-	
-		GetComponent<BoxCollider> ().isTrigger = false;
-	}
-
-	[Command]
 	void CmdSpawnExplo(Vector3 pos) {
 
 		GameObject go = Instantiate (exploPrefab);
@@ -175,7 +170,6 @@ public class Bomb : NetworkBehaviour {
         go.transform.position = new Vector3(pos.x, 0, pos.z);
         go.name = brickExploPrefab.name;
         NetworkServer.Spawn(go);
-        Destroy(go, 2.0f);
     }
 
 	[Command]
@@ -192,7 +186,6 @@ public class Bomb : NetworkBehaviour {
 		if (col.tag == "Player") {
 		
 			col.GetComponent<Player> ().onBomb = false;
-			CmdSetTrigger ();
 		}
 	}
 }

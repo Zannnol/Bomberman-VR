@@ -19,7 +19,7 @@ public class Player : NetworkBehaviour {
 		set { _isDead = value; }
 	}
 
-	[SyncVar]
+	[SyncVar(hook="OnChangeNumBomb")]
 	private int _numBomb = 1;
 	public int numBomb {
 		get { return _numBomb; }
@@ -105,6 +105,17 @@ public class Player : NetworkBehaviour {
 		if (_col != null)
 			_col.enabled = true;
 	}
+
+    void OnChangeNumBomb(int numBomb) {
+
+        // Actualiser l'HUD du joueur
+    }
+
+    void OnTriggerEnter(Collider col) {
+
+        if(col.tag == "Explosion")
+            Die();
+    }
 
     public void SetColliderBomb() {
 
