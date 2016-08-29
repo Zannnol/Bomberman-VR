@@ -11,8 +11,8 @@ public class GameManager : NetworkBehaviour {
     //public GameObject mainCamera;
 
     //private bool test = false;
-
-    public GameObject winUI;
+    public GameObject UI;
+    public static GameObject winUI;
     public Text playerUI;
 
     public static bool hasGameStarted = false;
@@ -28,25 +28,27 @@ public class GameManager : NetworkBehaviour {
     void Awake() {
 
         UpdatePlayersTab();
+        winUI = UI.transform.Find("Win").gameObject;
     }
 
     void Update() {
 
-        if (playersTab.Length > 1 && !hasGameStarted) {
+        if(playersTab != null)
+            if (playersTab.Length > 1 && !hasGameStarted) {
 
-            hasGameStarted = true;
-            Debug.Log("Game started!");
-            Time.timeScale = 1;
-        }
+                hasGameStarted = true;
+                Debug.Log("Game started!");
+                Time.timeScale = 1;
+            }
 
         if(hasGameStarted && !isGameFinished && playersTab.Length <= 1) {
 
             isGameFinished = true;
 
             if(playersTab.Length == 1)
-                StartCoroutine(Win(playersTab[0]));
+                StartCoroutine(StartWin(playersTab[0]));
             else
-                StartCoroutine(Win());
+                StartCoroutine(StartWin());
         }
     }
 
@@ -168,22 +170,26 @@ public class GameManager : NetworkBehaviour {
 		player.speed += howMuch;
     }
 
-    IEnumerator Win(Player player = default(Player)) {
+    public static void Win(string winner) {
 
-        yield return new WaitForSeconds(3.0f);
-
-        if (player != default(Player)) {
-
-            Debug.Log(player.name + " wins!");
-            winUI.GetComponentInChildren<Text> ().text = GetPlayerName(player) + " wins!";
-
-        }  else {
-
-            Debug.Log("Equality!");
+        if(winner != "")
+            winUI.GetComponentInChildren<Text> ().text = winner + " wins!";
+        else
             winUI.GetComponentInChildren<Text> ().text = "Equality!";
-        }
 
         winUI.SetActive(true);
         hasGameEnded = true;
+    }
+
+    IEnumerator StartWin(Player player = default(Player)) {
+
+        yield return new WaitForSeconds(3.0f);
+
+        string winnerName = "";
+
+        if(player != default(Player))
+            winnerName = player.name;
+
+        Win(winnerName);
     }
 }
